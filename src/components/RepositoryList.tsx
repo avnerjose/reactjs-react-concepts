@@ -1,17 +1,18 @@
+import { useEffect, useState } from "react";
 import { RepositoryItem } from "./RepositoryItem";
 import "../styles/repositories.scss";
-import { useEffect, useState } from "react";
 
-const repository = {
-  name: "test3e",
-  description: "askldfhjaslkdj",
-  link: "aksjdhfalkshflaksjhdk",
+type Repository = {
+  id: string;
+  name: string;
+  description: string;
+  html_url: string;
 };
 
 //https://api.github.com/users/avnerjose/repos
 
 export function RepositoryList() {
-  const [repositories, setRepositories] = useState([]);
+  const [repositories, setRepositories] = useState<Repository[]>([]);
 
   useEffect(() => {
     fetch("https://api.github.com/users/avnerjose/repos")
